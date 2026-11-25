@@ -1,0 +1,28 @@
+{
+  "name": "Branches Bible Club",
+  "short_name": "BBC",
+  "lang": "nl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "browser",
+  "background_color": "#F4DFC0",
+  "theme_color": "#F4DFC0",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "n": "01",
+    "date": {"nl": "Sessie 1", "en": "Session 1"},
+    "ref": {"nl": "Hooglied 1:1–4", "en": "Song of Songs 1:1–4"},
+    "title": {"nl": "Het najagen van intimiteit", "en": "The pursuit of intimacy"},
+    "keys": [
+      {"nl": ["Intimiteit vraagt om bewust zoeken.", "Nabijheid ontstaat niet per ongeluk: de bruid zoekt, vraagt en rent achter Hem aan."],
+       "en": ["Intimacy requires intentional pursuit.", "Closeness doesn’t happen by accident: the bride seeks, asks and runs after Him."]},
+      {"nl": ["Liefde wil de ander beter leren kennen.", "Echte liefde verlangt ernaar iemand dieper te kennen."],
+       "en": ["Love wants to know more.", "Real love carries a desire to know someone more deeply."]},
+      {"nl": ["Verder dan routine.", "Een relatie met God gaat verder dan religieuze gewoontes, tot echte nabijheid."],
+       "en": ["Beyond routine.", "A relationship with God goes beyond religious habits into real presence."]}
+    ],
+    "ask": {
+      "nl": ["Zoek ik Gods aanwezigheid, of alleen Zijn zegeningen?", "Hoe ziet bewuste tijd met Christus eruit in mijn leven?", "Wat moet er veranderen in mijn relatie met Hem?"],
+      "en": ["Am I pursuing God’s presence, or simply His blessings?", "What does intentional time with Christ look like in my life?", "What needs to change in my relationship with Him?"]
+    },
+    "pray": {"nl": "Heer, geef mij een dieper verlangen naar Uw aanwezigheid.", "en": "Lord, give me a deeper hunger for Your presence."}
+  }
+]
