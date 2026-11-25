@@ -1,10 +1,10 @@
 # Branches Bible Club
 
-Static site for GitHub Pages: Dutch at `/`, English at `/en/`.
+Static site for GitHub Pages. English is the primary site at `/`; Dutch is at `/nl/`.
 
 ## How to edit
 
-Don't edit `index.html` or `en/index.html` by hand. They are generated.
+Don't edit `index.html` or `nl/index.html` by hand. They are generated.
 
 - **Text and layout:** `src/site.html`. Write every text twice, as `<span lang="nl">…</span><span lang="en">…</span>`.
 - **New lesson after a Thursday:** add it at the **top** of `src/lessons.json`.
@@ -17,7 +17,7 @@ Then run:
 python3 build.py
 ```
 
-The build writes `index.html`, `en/index.html`, `404.html`, `sitemap.xml`, `robots.txt` and `site.webmanifest`. Commit those files together with your source changes.
+The build writes `index.html` (EN), `nl/index.html` (NL), `404.html`, `sitemap.xml`, `robots.txt` and `site.webmanifest`. Commit those files together with your source changes.
 
 ## Before launch (owner)
 
@@ -28,6 +28,6 @@ The build writes `index.html`, `en/index.html`, `404.html`, `sitemap.xml`, `robo
 5. Google Search Console: verify the site and submit `sitemap.xml`. Then set up Bing Webmaster Tools.
 6. Recommended: a custom domain (for example `branchesbibleclub.nl`). `robots.txt` only takes effect at a domain root.
 
-The SEO rationale, keywords and schema decisions are in `docs/seo.md`. The site files are the final version where the two differ.
+The SEO rationale, keywords and schema decisions are in `docs/seo.md`. That plan was written when Dutch was the default. English is now primary, and the site files are the final version where the two differ.
 
 Fonts are self-hosted (SIL OFL), so no visitor data goes to Google. The site has no cookies and no tracking.

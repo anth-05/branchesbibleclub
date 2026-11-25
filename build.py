@@ -6,8 +6,8 @@
 Reads  src/site.html   (one bilingual template: every text exists as
                         <span lang="nl">…</span><span lang="en">…</span>)
        src/lessons.json (the lessons; add a new session at the TOP)
-Writes index.html       (Dutch, the default page)
-       en/index.html    (English)
+Writes index.html       (English, the primary page)
+       nl/index.html    (Dutch)
        404.html, sitemap.xml
 
 Template tokens: {{root}} relative path to the site root, {{url}} absolute
@@ -142,13 +142,14 @@ def build():
     src = (HERE / "src/site.html").read_text()
     lessons = json.loads((HERE / "src/lessons.json").read_text())
     today = datetime.date.today().isoformat()
-    pages = {"nl": ("index.html", BASE, BASE + "en/", ""), "en": ("en/index.html", BASE + "en/", BASE, "../")}
+    pages = {"en": ("index.html", BASE, BASE + "nl/", ""), "nl": ("nl/index.html", BASE + "nl/", BASE, "../")}
     for lang, (out, url, alt, root) in pages.items():
         p = LangFilter(lang)
         p.feed(src.replace("{{lessons}}", render_lessons(lessons, lang)))
         page = p.result()
         for k, v in {"{{lang}}": lang, "{{root}}": root, "{{url}}": url, "{{alt_url}}": alt, "{{base}}": BASE, "{{updated}}": today, **LABELS[lang]}.items():
             page = page.replace(k, v)
+        page = page.replace('href=""', 'href="./"')
         page = re.sub(r"\n\s*\n+", "\n", page)
         assert "{{" not in page, "unreplaced token"
         (HERE / out).parent.mkdir(exist_ok=True)
@@ -160,30 +161,30 @@ def build():
   <url>
     <loc>{BASE}</loc>
     <lastmod>{today}</lastmod>
-    <xhtml:link rel="alternate" hreflang="nl" href="{BASE}"/>
-    <xhtml:link rel="alternate" hreflang="en" href="{BASE}en/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{BASE}"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="{BASE}nl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="{BASE}"/>
   </url>
   <url>
-    <loc>{BASE}en/</loc>
+    <loc>{BASE}nl/</loc>
     <lastmod>{today}</lastmod>
-    <xhtml:link rel="alternate" hreflang="nl" href="{BASE}"/>
-    <xhtml:link rel="alternate" hreflang="en" href="{BASE}en/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{BASE}"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="{BASE}nl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="{BASE}"/>
   </url>
 </urlset>
 """)
     (HERE / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n")
     (HERE / "site.webmanifest").write_text(json.dumps({
-        "name": "Branches Bible Club", "short_name": "BBC", "lang": "nl", "start_url": "./", "scope": "./",
+        "name": "Branches Bible Club", "short_name": "BBC", "lang": "en", "start_url": "./", "scope": "./",
         "display": "browser", "background_color": "#F4DFC0", "theme_color": "#F4DFC0",
         "icons": [{"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"},
                   {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png"},
                   {"src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}, indent=2) + "\n")
     path = BASE.split("github.io", 1)[-1] if "github.io" in BASE else "/"
     (HERE / "404.html").write_text(f"""<!doctype html>
-<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pagina niet gevonden · Branches Bible Club</title><meta name="robots" content="noindex">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · Branches Bible Club</title><meta name="robots" content="noindex">
 <link rel="icon" href="{path}favicon.svg?v=2" type="image/svg+xml"><link rel="icon" href="{path}favicon.ico?v=2" sizes="32x32">
 <link rel="stylesheet" href="{path}assets/fonts.css">
 <style>body{{margin:0;min-height:100svh;display:grid;place-items:center;background:#F4DFC0;color:#3E2A1F;font:17px/1.6 Figtree,system-ui,sans-serif;padding:24px}}
@@ -191,8 +192,8 @@ main{{max-width:34rem}}h1{{font:400 clamp(40px,8vw,64px)/1 Newsreader,Georgia,se
 a{{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;margin:12px 12px 0 0;border-radius:18px 22px 16px 24px;background:#B4402A;color:#FFF6EA;text-decoration:none;font-weight:600}}
 a.l{{background:transparent;color:#3E2A1F;box-shadow:inset 0 0 0 2px #3E2A1F}}a:focus-visible{{outline:2.5px solid #9E3522;outline-offset:3px}}</style></head>
 <body><main><img src="{path}favicon.svg" width="56" height="56" alt="">
-<h1>Deze pagina is er niet.</h1><p>De link klopt niet meer, of de pagina is verhuisd.</p><p lang="en">This page doesn’t exist. The link may be out of date.</p>
-<a href="{path}">Naar de homepage</a><a class="l" href="{path}en/" lang="en" hreflang="en">English homepage</a></main></body></html>
+<h1>This page doesn’t exist.</h1><p>The link may be out of date, or the page has moved.</p><p lang="nl">Deze pagina bestaat niet. De link klopt misschien niet meer.</p>
+<a href="{path}">Go to the homepage</a><a class="l" href="{path}nl/" lang="nl" hreflang="nl">Nederlandse homepage</a></main></body></html>
 """)
     print("wrote sitemap.xml, robots.txt, site.webmanifest, 404.html")
 
