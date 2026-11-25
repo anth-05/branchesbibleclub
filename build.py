@@ -184,7 +184,7 @@ def build():
     (HERE / "404.html").write_text(f"""<!doctype html>
 <html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pagina niet gevonden · Branches Bible Club</title><meta name="robots" content="noindex">
-<link rel="icon" href="{path}favicon.svg" type="image/svg+xml"><link rel="icon" href="{path}favicon.ico" sizes="32x32">
+<link rel="icon" href="{path}favicon.svg?v=2" type="image/svg+xml"><link rel="icon" href="{path}favicon.ico?v=2" sizes="32x32">
 <link rel="stylesheet" href="{path}assets/fonts.css">
 <style>body{{margin:0;min-height:100svh;display:grid;place-items:center;background:#F4DFC0;color:#3E2A1F;font:17px/1.6 Figtree,system-ui,sans-serif;padding:24px}}
 main{{max-width:34rem}}h1{{font:400 clamp(40px,8vw,64px)/1 Newsreader,Georgia,serif;margin:16px 0}}p{{margin:0 0 12px;color:#5A4334}}
